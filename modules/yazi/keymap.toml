@@ -1,0 +1,12 @@
+[manager]
+prepend_keymap = [
+	{ on = "?",    run = "help", desc = "Open help" },
+	{ on = [ "g", "p" ], run = "cd ~/projects"},
+	{ on = [ "g", "c" ], run = "cd ~/.config/nixos"},
+	{ on = [ "g", "v" ], run = "cd ~/vault"},
+	{ on = [ "g", "b" ], run = "cd ~/backup"},
+	{ on = [ "g", "h" ], run = "cd ~"},
+	{ on = [ "g", "r" ], run = "cd /"},
+	{ on = [ "g", "m" ], run = "cd /run/media/nixos"},
+	{ on = [ "g", "d" ], run = "cd ~/Downloads"},
+]

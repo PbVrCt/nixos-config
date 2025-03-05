@@ -1,0 +1,36 @@
+block 2 1
+padding 0 0
+margin 0 0
+ratio 2 1
+date-padding 1
+fill ''
+locale ''
+timezone ''
+date '%a %b %d'
+mode timer
+view ascii
+toggle active-bg
+stopwatch start
+timer 10m:0s
+timer-exec 'notify-send -a peaclock "timer complete"'
+rate-input 50
+rate-refresh 1000
+rate-status 5000
+set hour-24 on
+set seconds on 
+set date off
+set auto-size off
+set auto-ratio on
+
+style active-fg clear
+style inactive-fg clear
+style colon-fg clear
+style active-bg reverse
+style inactive-bg clear
+style colon-bg clear
+style date clear
+style background clear
+style text clear
+style prompt clear
+style success green
+style error red

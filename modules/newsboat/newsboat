@@ -1,0 +1,34 @@
+auto-reload yes
+refresh-on-startup yes
+show-read-articles yes
+cleanup-on-quit yes
+
+unbind-key h
+unbind-key j
+unbind-key k
+unbind-key l
+unbind-key J
+unbind-key K
+unbind-key d
+unbind-key u
+unbind-key n
+unbind-key N
+bind-key h quit
+bind-key j next
+bind-key k prev
+bind-key l open
+bind-key J next-feed
+bind-key K prev-feed
+bind-key d pagedown
+bind-key u pageup
+bind-key n next-unread
+bind-key N prev-unread
+
+articlelist-format "%4i %f %D  %?T?|%-17T| ?%t"
+color background                                            default   default
+color listnormal                                            default   default
+color listfocus                                             magenta   default
+color info                                                  blue      black
+color article                                               default   default
+color listnormal_unread                                     white     default
+color listfocus_unread                                      color255  red
