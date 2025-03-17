@@ -1,0 +1,10 @@
+height = 24
+position = "bottom"
+layer = "overlay"
+margin_top = -24
+margin_left = 1492
+separator_width = 0.0
+show_tags = false
+show_layout_name = false
+show_mode = false
+command = "i3status-rs"

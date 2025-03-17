@@ -1,0 +1,90 @@
+#!/usr/bin/env bash
+riverctl spawn "dbus-update-activation-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=river"
+
+riverctl spawn "fcitx5"
+riverctl spawn "i3bar-river"
+
+riverctl set-repeat 45 200
+riverctl input "pointer-1-1-kanata" tap enabled
+riverctl input "pointer-1-1-kanata" drag enabled
+riverctl input "pointer-1-1-kanata" drag-lock enabled
+riverctl input "pointer-1-1-kanata" disable-while-typing disabled
+riverctl input "pointer-1-1-kanata" disable-while-trackpointing disabled
+
+riverctl border-width 0
+riverctl default-layout rivertile
+rivertile -view-padding 0 -outer-padding 0 -main-ratio 0.5 &
+riverctl focus-follows-cursor always
+riverctl set-cursor-warp on-focus-change
+
+# i3 like shorcuts
+riverctl map normal Super O spawn "fuzzel &"
+riverctl map normal Super+Shift Q close
+riverctl map normal Super+Ctrl+Shift E exit
+for i in $(seq 1 9)
+do
+    tags=$((1 << ($i - 1)))
+    riverctl map normal Super $i set-focused-tags $tags
+    riverctl map normal Super+Shift $i set-view-tags $tags
+done
+riverctl spawn-tagmask 0000001111
+
+# Initial apps
+riverctl rule-add -app-id tmux_term tags 1
+riverctl spawn "foot --app-id='tmux_term' -e tmux"
+riverctl rule-add -app-id firefox tags 2
+riverctl spawn "firefox"
+riverctl rule-add -app-id notes_term tags 4
+riverctl spawn "foot --app-id='notes_term' -e sh -c 'cd ~/vault/ && hx SoT/Reminders.md'" 
+riverctl set-focused-tags 1
+
+# Scratchpad apps 
+ 
+riverctl rule-add -title wifi_term tags 32 # 0000100000
+riverctl rule-add -title wifi_term float
+riverctl rule-add -title wifi_term dimensions 700 700
+riverctl spawn "ghostty --title=wifi_term --gtk-tabs-location=hidden -e nmtui-connect"
+riverctl map normal Mod1 Q spawn 'sh -c "riverctl toggle-focused-tags 32; riverctl focus-view next"'
+
+riverctl rule-add -title audio_term tags 64 # 0001000000
+riverctl rule-add -title audio_term float
+riverctl rule-add -title audio_term dimensions 700 500
+riverctl spawn "ghostty --title=audio_term --gtk-tabs-location=hidden -e pulsemixer"
+riverctl map normal Mod1 R spawn 'sh -c "riverctl toggle-focused-tags 64; riverctl focus-view next"'
+
+riverctl rule-add -title brightness_term tags 128 # 0010000000
+riverctl rule-add -title brightness_term float
+riverctl rule-add -title brightness_term dimensions 700 200
+riverctl spawn "ghostty --title=brightness_term --gtk-tabs-location=hidden -e ~/.config/nixos/scripts/brightness.sh"
+riverctl map normal Mod1 E spawn 'sh -c "riverctl toggle-focused-tags 128; riverctl focus-view next"'
+
+riverctl rule-add -title chat_term tags 256 # 0100000000
+riverctl rule-add -title chat_term float
+riverctl rule-add -title chat_term dimensions 1800 990
+riverctl spawn "ghostty --title='chat_term' --gtk-tabs-location=hidden -e aichat"
+riverctl map normal Mod1 Y spawn 'sh -c "riverctl toggle-focused-tags 256; riverctl focus-view next"'
+
+riverctl rule-add -title architect_term tags 512 # 1000000000
+riverctl rule-add -title architect_term float
+riverctl rule-add -title architect_term dimensions 1700 1100
+riverctl spawn "ghostty --title='architect_term' --gtk-tabs-location=hidden -e 'cd $(zoxide query --list | grep "/projects/" | head -n 1) && export OPENROUTER_API_KEY=$(cat /run/secrets/OPENROUTER_API_KEY) && nix develop nixpkgs#aider-chat'"
+riverctl map normal Mod1 U spawn 'sh -c "riverctl toggle-focused-tags 512; riverctl focus-view next"'
+
+riverctl rule-add -title news_term tags 1024 # 10000000000
+riverctl rule-add -title news_term float
+riverctl rule-add -title news_term dimensions 1700 1100
+riverctl spawn "ghostty --title='news_term' --gtk-tabs-location=hidden -e newsboat"
+riverctl map normal Mod1 S spawn 'sh -c "riverctl toggle-focused-tags 1024; riverctl focus-view next"'
+
+riverctl rule-add -title docker_term tags 2048
+riverctl rule-add -title docker_term float
+riverctl rule-add -title docker_term dimensions 1700 1100
+riverctl spawn "ghostty --title='docker_term' --gtk-tabs-location=hidden -e lazydocker"
+riverctl map normal Mod1 D spawn 'sh -c "riverctl toggle-focused-tags 2048; riverctl focus-view next"'
+
+riverctl rule-add -title kanji_practice_term tags 4096
+riverctl rule-add -title kanji_practice_term float
+riverctl rule-add -title kanji_practice_term dimensions 1850 1020
+riverctl spawn "ghostty --title='kanji_practice_term' --gtk-tabs-location=hidden --font-size=33 -e 'python3 ~/.config/nixos/dotfiles/kanji_practice/game.py'"
+riverctl map normal Mod1 I spawn 'sh -c "riverctl toggle-focused-tags 4096; riverctl focus-view next"'
+

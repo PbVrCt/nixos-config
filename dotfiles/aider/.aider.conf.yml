@@ -1,0 +1,14 @@
+model: openrouter/anthropic/claude-3.7-sonnet
+weak-model: openrouter/anthropic/claude-3-5-haiku
+
+restore-chat-history: true
+
+yes-always: true
+git: true
+auto-commits: true
+map-tokens: 1024
+
+vim: true
+
+dark-mode: true
+code-theme: monokai

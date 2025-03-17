@@ -1,0 +1,32 @@
+[[block]]
+block = "time"
+interval = 30
+format = "$timestamp.datetime(f:'%a %R %d/%m') "
+
+[[block]]
+block = "cpu"
+warning_cpu = 20
+critical_cpu = 90
+format = " $icon $utilization "
+
+[[block]]
+block = "battery"
+good = 40
+info = 40
+warning = 40
+critical = 10
+format = " $icon $percentage "
+missing_format = "     " 
+
+icons_format = "{icon}"
+
+[theme]
+theme = "native"
+
+[theme.overrides]
+idle_fg = "#a8a8a8"
+idle_bg = "none"
+good_fg = "#a8a8a8"
+info_fg = "#a8a8a8"
+warning_fg = "#ffd700"
+critical_fg = "#ff0000"

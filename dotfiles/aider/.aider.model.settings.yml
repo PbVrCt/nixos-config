@@ -1,0 +1,8 @@
+# - name: openrouter/anthropic/claude-3.5-sonnet
+#   extra_params:
+#     extra_body:
+#       provider:
+#         order: ["Anthropic", "Together"]
+#         allow_fallbacks: false
+#         data_collection: "deny"
+#         require_parameters: true
