@@ -88,4 +88,4 @@ Takes a while, downloads ~15GB. At the end, if kanata gives a permission error, 
 8. Run: `reboot`
 
 # To do:
-- (Consider remote development)[https://www.youtube.com/watch?v=KQ2gz5i7VAA]. Look into: vps providers, tailscale, nixos-anywhere.
+- [Consider remote development](https://www.youtube.com/watch?v=KQ2gz5i7VAA). Look into: vps providers, tailscale, nixos-anywhere.
